@@ -1,5 +1,5 @@
-#ifndef Matrix2_H
-#define Matrix3_H
+#ifndef Matrix_X
+#define Matrix_C
 
 #include <cstdio>
 
