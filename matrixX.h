@@ -1,5 +1,5 @@
-#ifndef MATRIX3F_H
-#define MATRIX3F_H
+#ifndef MATRIXX_H
+#define MATRIXX_H
 
 #include <cstdio>
 
