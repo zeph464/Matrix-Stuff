@@ -1,29 +1,29 @@
-#ifndef MATRIXX_H
-#define MATRIXX_H
+#ifndef Matrix2_H
+#define Matrix3_H
 
 #include <cstdio>
 
-class Matrix2f;
-class Quat4f;
+class Matrix_X;
+class Quaternion_F;
 class Vector3f;
 
 // 3x3 Matrix, stored in column major order (OpenGL style)
-class Matrix3f
+class Matrix_C
 {
 public:
 
     // Fill a 3x3 matrix with "fill", default to 0.
-	Matrix3f( float fill = 0.f );
-	Matrix3f( float m00, float m01, float m02,
+	Matrix_C( float fill = 0.f );
+	Matrix_C( float m00, float m01, float m02,
 		float m10, float m11, float m12,
 		float m20, float m21, float m22 );
 
 	// setColumns = true ==> sets the columns of the matrix to be [v0 v1 v2]
 	// otherwise, sets the rows
-	Matrix3f( const Vector3f& v0, const Vector3f& v1, const Vector3f& v2, bool setColumns = true );
+	Matrix_C( const Vector3f& v0, const Vector3f& v1, const Vector3f& v2, bool setColumns = true );
 
-	Matrix3f( const Matrix3f& rm ); // copy constructor
-	Matrix3f& operator = ( const Matrix3f& rm ); // assignment operator
+	Matrix_C( const Matrix_C& rm ); // copy constructor
+	Matrix_C& operator = ( const Matrix_C& rm ); // assignment operator
 	// no destructor necessary
 
 	const float& operator () ( int i, int j ) const;
@@ -37,17 +37,17 @@ public:
 
 	// gets the 2x2 submatrix of this matrix to m
 	// starting with upper left corner at (i0, j0)
-	Matrix2f getSubmatrix2x2( int i0, int j0 ) const;
+	Matrix_X getSubmatrix2x2( int i0, int j0 ) const;
 
 	// sets a 2x2 submatrix of this matrix to m
 	// starting with upper left corner at (i0, j0)
-	void setSubmatrix2x2( int i0, int j0, const Matrix2f& m );
+	void setSubmatrix2x2( int i0, int j0, const Matrix_X& m );
 
 	float determinant() const;
-	Matrix3f inverse( bool* pbIsSingular = NULL, float epsilon = 0.f ) const; // TODO: invert in place as well
+	Matrix_C inverse( bool* pbIsSingular = NULL, float epsilon = 0.f ) const; // TODO: invert in place as well
 
 	void transpose();
-	Matrix3f transposed() const;
+	Matrix_C transposed() const;
 
 	// ---- Utility ----
 	operator float* (); // automatic type conversion for GL
@@ -57,18 +57,18 @@ public:
 		float m10, float m11, float m12,
 		float m20, float m21, float m22 );
 
-	static Matrix3f ones();
-	static Matrix3f identity();
-	static Matrix3f rotateX( float radians );
-	static Matrix3f rotateY( float radians );
-	static Matrix3f rotateZ( float radians );
-	static Matrix3f scaling( float sx, float sy, float sz );
-	static Matrix3f uniformScaling( float s );
-	static Matrix3f rotation( const Vector3f& rDirection, float radians );
+	static Matrix_C ones();
+	static Matrix_C identity();
+	static Matrix_C rotateX( float radians );
+	static Matrix_C rotateY( float radians );
+	static Matrix_C rotateZ( float radians );
+	static Matrix_C scaling( float sx, float sy, float sz );
+	static Matrix_C uniformScaling( float s );
+	static Matrix_C rotation( const Vector3f& rDirection, float radians );
 
 	// Returns the rotation matrix represented by a unit quaternion
 	// if q is not normalized, it it normalized first
-	static Matrix3f rotation( const Quat4f& rq );
+	static Matrix_C rotation( const Quaternion_F& rq );
 
 private:
 
@@ -78,9 +78,9 @@ private:
 
 // Matrix-Vector multiplication
 // 3x3 * 3x1 ==> 3x1
-Vector3f operator * ( const Matrix3f& m, const Vector3f& v );
+Vector3f operator * ( const Matrix_C& m, const Vector3f& v );
 
 // Matrix-Matrix multiplication
-Matrix3f operator * ( const Matrix3f& x, const Matrix3f& y );
+Matrix_C operator * ( const Matrix_C& x, const Matrix_C& y );
 
-#endif // MATRIX3F_H
+#endif // Matrix_C_H
