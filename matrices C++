@@ -1,3 +1,5 @@
+//Matrix and Vecotr math by Jesse Johnson <zeph464@protonmail.com> for dynamic ray casting in OpenGl//
+
 #include "Matrix_Z"
 
 #include <cassert>
